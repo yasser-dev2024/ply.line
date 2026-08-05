@@ -10,7 +10,8 @@
   <meta property="og:image" content="download_page/images/gameplay-combat.png">
   <title>القتال مع الأسود 3D | مغامرة للأندرويد</title>
   <link rel="icon" href="download_page/images/logo.png">
-  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="site.css?v=20260806-2">
+  <script src="site.js?v=20260806-2" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -18,7 +19,7 @@
       <img src="download_page/images/logo.png" alt="">
       <span>القتال مع الأسود <bdi>3D</bdi></span>
     </a>
-    <a class="top-download" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download>تحميل اللعبة</a>
+    <a class="top-download" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download data-install>تحميل اللعبة</a>
   </header>
 
   <main id="top">
@@ -28,7 +29,7 @@
         <h1>ادخل الغابة.<br><em>ابدأ المغامرة.</em></h1>
         <p>خمس مراحل مترابطة تأخذك من آثار الأسود إلى النهر والكهف والقلعة، وصولًا إلى مهمة الإنقاذ الأخيرة.</p>
         <div class="hero-actions">
-          <a class="primary" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download>
+          <a class="primary" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download data-install>
             <span class="android-mark">↓</span>
             <span><strong>تحميل APK مباشرة</strong><small>الإصدار 1.2.2 · الحجم 68.8 MB</small></span>
           </a>
@@ -93,16 +94,45 @@
         <h2>ثبّتها في ثلاث خطوات</h2>
       </div>
       <ol>
-        <li><b>1</b><span>حمّل ملف APK</span></li>
-        <li><b>2</b><span>اسمح بالتثبيت عند الطلب</span></li>
-        <li><b>3</b><span>افتح اللعبة وابدأ</span></li>
+        <li><b>1</b><span>حمّل وافتح ملف APK</span></li>
+        <li><b>2</b><span>اسمح لـChrome عند الطلب</span></li>
+        <li><b>3</b><span>انتظر فحص Play Protect ثم ثبّت</span></li>
       </ol>
-      <a class="primary compact" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download>
+      <a class="primary compact" href="releases/android/lion-battle-3d-v1.2.2-android.apk" download data-install>
         <span class="android-mark">↓</span>
         <span><strong>تحميل اللعبة الآن</strong><small>Android 7.0 أو أحدث</small></span>
       </a>
     </section>
   </main>
+
+  <dialog class="install-dialog" id="install-dialog" aria-labelledby="install-title">
+    <div class="dialog-head">
+      <img src="download_page/images/logo.png" alt="">
+      <div>
+        <span>تثبيت آمن من الصفحة</span>
+        <h2 id="install-title">قبل تنزيل اللعبة</h2>
+      </div>
+      <button class="dialog-close" type="button" aria-label="إغلاق">×</button>
+    </div>
+
+    <div class="important-note">
+      <strong>مهم جدًا</strong>
+      <p>عندما تظهر نافذة <bdi>Google Play Protect</bdi> اختر «فحص التطبيق» وانتظر حتى ينتهي، ثم أكمل التثبيت. لا تغلق نافذة الفحص؛ إغلاقها يسبب رسالة «التطبيق ليس مثبتًا».</p>
+    </div>
+
+    <ol class="install-flow">
+      <li><b>1</b><span><strong>نزّل الملف</strong><small>اضغط زر التنزيل أدناه وانتظر اكتمال 68.8 MB.</small></span></li>
+      <li><b>2</b><span><strong>افتح ملف APK</strong><small>افتحه من إشعار التنزيل أو من «عمليات التنزيل» في Chrome.</small></span></li>
+      <li><b>3</b><span><strong>اسمح من هذا المصدر</strong><small>إذا طلب Android الإذن، فعّله لـChrome فقط ثم ارجع.</small></span></li>
+      <li><b>4</b><span><strong>انتظر الفحص ثم ثبّت</strong><small>لا تضغط رجوع ولا تغلق شاشة Play Protect أثناء التحقق.</small></span></li>
+    </ol>
+
+    <a class="primary dialog-download" href="releases/android/lion-battle-3d-v1.2.2-android.apk" type="application/vnd.android.package-archive" download>
+      <span class="android-mark">↓</span>
+      <span><strong>فهمت — تنزيل اللعبة</strong><small>APK موّقع · الإصدار 1.2.2</small></span>
+    </a>
+    <p class="integrity">تم فحص الملف المنشور ومطابقته مع النسخة الأصلية: 72,173,125 بايت.</p>
+  </dialog>
 
   <footer>
     <div class="wrap">

@@ -167,6 +167,58 @@ footer { border-top: 1px solid var(--line); color: #7f8d83; }
 footer .wrap { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 footer span { color: #d7ddd8; font-weight: 800; }
 
+.install-dialog {
+  width: calc(100vw - 28px);
+  max-width: 610px;
+  max-height: min(760px, calc(100dvh - 28px));
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  color: var(--text);
+  border: 1px solid rgba(241, 173, 43, .3);
+  border-radius: 24px;
+  background: #0d1510;
+  box-shadow: 0 35px 120px rgba(0, 0, 0, .75);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.install-dialog::backdrop { background: rgba(2, 5, 3, .82); backdrop-filter: blur(7px); }
+.install-dialog[open] { animation: dialog-in .2s ease-out; }
+
+.dialog-head {
+  display: grid;
+  grid-template-columns: 54px 1fr 38px;
+  align-items: center;
+  gap: 13px;
+  padding: 22px 24px 17px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dialog-head img { width: 54px; height: 54px; border-radius: 15px; }
+.dialog-head span { color: var(--gold); font-size: 11px; font-weight: 800; }
+.dialog-head h2 { margin: 0; font-size: 24px; line-height: 1.25; }
+.dialog-close { width: 36px; height: 36px; padding: 0; color: #c8d0c9; border: 1px solid var(--line); border-radius: 11px; background: rgba(255,255,255,.035); font: 25px/1 Arial, sans-serif; cursor: pointer; }
+.dialog-close:hover { background: rgba(255,255,255,.08); }
+
+.important-note { margin: 20px 24px 12px; padding: 15px 17px; border: 1px solid rgba(241, 173, 43, .3); border-radius: 15px; background: rgba(241, 173, 43, .08); }
+.important-note strong { color: var(--gold-bright); font-size: 13px; }
+.important-note p { margin: 4px 0 0; color: #e1e4dc; font-size: 14px; line-height: 1.7; }
+
+.install-flow { display: grid; gap: 7px; margin: 0; padding: 0 24px; list-style: none; }
+.install-flow li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.install-flow li > b { flex: 0 0 auto; width: 31px; height: 31px; display: grid; place-items: center; color: var(--gold); border: 1px solid rgba(241, 173, 43, .3); border-radius: 50%; }
+.install-flow li > span { display: flex; flex-direction: column; }
+.install-flow strong { font-size: 14px; }
+.install-flow small { color: var(--muted); font-size: 12px; }
+.dialog-download { width: calc(100% - 48px); margin: 20px 24px 8px; }
+.integrity { margin: 0 24px 22px; color: #7f8b82; text-align: center; font-size: 10px; }
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 @media (max-width: 980px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 58px; text-align: center; }
   .hero-copy > p { margin-inline: auto; }
@@ -203,6 +255,13 @@ footer span { color: #d7ddd8; font-weight: 800; }
   .install ol { flex-direction: column; align-items: stretch; text-align: right; }
   .install li { padding: 7px 0; }
   footer .wrap { flex-direction: column; justify-content: center; gap: 2px; text-align: center; }
+  .dialog-head { padding: 18px; grid-template-columns: 46px 1fr 34px; }
+  .dialog-head img { width: 46px; height: 46px; }
+  .dialog-head h2 { font-size: 20px; }
+  .important-note { margin: 15px 18px 9px; }
+  .install-flow { padding-inline: 18px; }
+  .dialog-download { width: calc(100% - 36px); margin-inline: 18px; }
+  .integrity { margin-inline: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
