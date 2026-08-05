@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/lion_enemy.gd" id="1_enemy"]
+[ext_resource type="PackedScene" path="res://assets/models/lion_poly_by_google.glb" id="2_lion"]
+
+[sub_resource type="BoxShape3D" id="BoxShape_lion"]
+size = Vector3(0.82, 1.15, 2.15)
+
+[node name="LionEnemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 1
+floor_max_angle = 0.785398
+floor_snap_length = 0.3
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.58, -0.2)
+shape = SubResource("BoxShape_lion")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.45
+target_desired_distance = 0.75
+radius = 0.72
+height = 1.25
+path_height_offset = 0.08
+avoidance_enabled = false
+
+[node name="Visual" type="Node3D" parent="."]
+scale = Vector3(0.16, 0.16, 0.16)
+
+[node name="LionModel" parent="Visual" instance=ExtResource("2_lion")]
+
+[node name="StatusLabel" type="Label3D" parent="."]
+position = Vector3(0, 1.6, 0)
+visible = false
+text = "أسد"
+font_size = 44
+outline_size = 8
+modulate = Color(1, 0.88, 0.64, 1)
+outline_modulate = Color(0.08, 0.02, 0.01, 0.9)
+pixel_size = 0.003
+billboard = 1
+no_depth_test = true

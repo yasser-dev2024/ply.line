@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/collectible.gd" id="1_collect"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_gold"]
+albedo_color = Color(0.95, 0.57, 0.08, 1)
+metallic = 0.52
+roughness = 0.26
+emission_enabled = true
+emission = Color(0.18, 0.075, 0.006, 1)
+emission_energy_multiplier = 1.7
+
+[sub_resource type="CylinderMesh" id="Mesh_piece"]
+material = SubResource("Mat_gold")
+top_radius = 0.36
+bottom_radius = 0.36
+height = 0.13
+radial_segments = 6
+
+[sub_resource type="TorusMesh" id="Mesh_ring"]
+material = SubResource("Mat_gold")
+inner_radius = 0.39
+outer_radius = 0.47
+rings = 12
+ring_segments = 6
+
+[sub_resource type="SphereShape3D" id="Shape_piece"]
+radius = 0.72
+
+[node name="Collectible" type="Area3D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_collect")
+
+[node name="Piece" type="MeshInstance3D" parent="."]
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("Mesh_piece")
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("Mesh_ring")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("Shape_piece")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.58, 0.19, 1)
+light_energy = 0.9
+omni_range = 2.7
+shadow_enabled = false
+

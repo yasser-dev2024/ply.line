@@ -1,0 +1,36 @@
+# Godot generated files
+.godot/
+game/.godot/
+
+# Android and release outputs
+android_build/
+game/android/
+*.apk
+*.aab
+
+# Signing material and local secrets
+.secrets/
+*.keystore
+*.jks
+*.p12
+export_credentials.cfg
+
+# Local editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Keep only the current published build. Older APKs include obsolete 121 MB
+# binaries that exceed GitHub's per-file limit.
+!releases/android/lion-battle-3d-v1.2.2-android.apk
+!download_page/downloads/lion-battle-3d-v1.2.2-android.apk
+
+# Downloaded upstream source archives are reproducibility caches, not project
+# sources. Their licenses and provenance remain documented under docs/.
+third_party_source_archives/
+
+# Local serving/tunnel diagnostics and temporary device captures.
+download_page/tunnel*.log
+game/tests/device_scope_v122.png
+game/tests/device_scope_v122.png.import

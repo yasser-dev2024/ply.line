@@ -1,0 +1,202 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
+[ext_resource type="PackedScene" path="res://addons/quaternius_ik_rigged/Models_with_rigging/Master_Rigged.tscn" id="2_human"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
+radius = 0.38
+height = 1.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_torso"]
+albedo_color = Color(0.12, 0.24, 0.2, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_skin"]
+albedo_color = Color(0.47, 0.28, 0.16, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_cloth"]
+albedo_color = Color(0.56, 0.31, 0.1, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_trouser"]
+albedo_color = Color(0.11, 0.13, 0.12, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_face"]
+albedo_color = Color(0.93, 0.72, 0.42, 1)
+emission_enabled = true
+emission = Color(0.18, 0.08, 0.02, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial_weapon"]
+albedo_color = Color(0.12, 0.13, 0.12, 1)
+metallic = 0.65
+roughness = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_weapon"]
+material = SubResource("StandardMaterial_weapon")
+size = Vector3(0.12, 0.15, 0.48)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel"]
+material = SubResource("StandardMaterial_weapon")
+top_radius = 0.055
+bottom_radius = 0.055
+height = 0.42
+radial_segments = 10
+
+[sub_resource type="BoxMesh" id="BoxMesh_stock"]
+material = SubResource("StandardMaterial_weapon")
+size = Vector3(0.11, 0.17, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_grip"]
+material = SubResource("StandardMaterial_weapon")
+size = Vector3(0.075, 0.22, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_scope"]
+material = SubResource("StandardMaterial_weapon")
+top_radius = 0.048
+bottom_radius = 0.048
+height = 0.21
+radial_segments = 10
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_torso"]
+material = SubResource("StandardMaterial_torso")
+radius = 0.31
+height = 0.92
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+material = SubResource("StandardMaterial_skin")
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_limb"]
+material = SubResource("StandardMaterial_cloth")
+radius = 0.105
+height = 0.72
+radial_segments = 10
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_leg"]
+material = SubResource("StandardMaterial_trouser")
+radius = 0.12
+height = 0.78
+radial_segments = 10
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_face"]
+material = SubResource("StandardMaterial_face")
+radius = 0.045
+height = 0.09
+radial_segments = 8
+rings = 4
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_player")
+floor_max_angle = 0.872665
+floor_snap_length = 0.35
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.98, 0)
+shape = SubResource("CapsuleShape_player")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="HumanModel" parent="Visual" instance=ExtResource("2_human")]
+rotation = Vector3(0, 3.14159, 0)
+
+[node name="Torso" type="MeshInstance3D" parent="Visual"]
+visible = false
+position = Vector3(0, 1.23, 0)
+mesh = SubResource("CapsuleMesh_torso")
+cast_shadow = 1
+
+[node name="Head" type="MeshInstance3D" parent="Visual"]
+visible = false
+position = Vector3(0, 1.93, 0)
+mesh = SubResource("SphereMesh_head")
+cast_shadow = 1
+
+[node name="FaceMark" type="MeshInstance3D" parent="Visual/Head"]
+position = Vector3(0, 0.01, -0.235)
+scale = Vector3(1.7, 0.65, 0.55)
+mesh = SubResource("SphereMesh_face")
+
+[node name="LeftArm" type="Node3D" parent="Visual"]
+position = Vector3(-0.39, 1.48, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual/LeftArm"]
+visible = false
+position = Vector3(0, -0.32, 0)
+mesh = SubResource("CapsuleMesh_limb")
+
+[node name="RightArm" type="Node3D" parent="Visual"]
+position = Vector3(0.39, 1.48, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual/RightArm"]
+visible = false
+position = Vector3(0, -0.32, 0)
+mesh = SubResource("CapsuleMesh_limb")
+
+[node name="LeftLeg" type="Node3D" parent="Visual"]
+position = Vector3(-0.17, 0.82, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual/LeftLeg"]
+visible = false
+position = Vector3(0, -0.34, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="RightLeg" type="Node3D" parent="Visual"]
+position = Vector3(0.17, 0.82, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Visual/RightLeg"]
+visible = false
+position = Vector3(0, -0.34, 0)
+mesh = SubResource("CapsuleMesh_leg")
+
+[node name="Weapon" type="Node3D" parent="Visual"]
+position = Vector3(0.3, 1.25, -0.38)
+
+[node name="Body" type="MeshInstance3D" parent="Visual/Weapon"]
+mesh = SubResource("BoxMesh_weapon")
+
+[node name="Stock" type="MeshInstance3D" parent="Visual/Weapon"]
+position = Vector3(0, 0, 0.32)
+mesh = SubResource("BoxMesh_stock")
+
+[node name="Grip" type="MeshInstance3D" parent="Visual/Weapon"]
+position = Vector3(0, -0.16, 0.08)
+rotation = Vector3(-0.244346, 0, 0)
+mesh = SubResource("BoxMesh_grip")
+
+[node name="Scope" type="MeshInstance3D" parent="Visual/Weapon"]
+position = Vector3(0, 0.13, -0.08)
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("CylinderMesh_scope")
+
+[node name="Barrel" type="MeshInstance3D" parent="Visual/Weapon"]
+position = Vector3(0, 0.02, -0.45)
+rotation = Vector3(1.5708, 0, 0)
+mesh = SubResource("CylinderMesh_barrel")
+
+[node name="MuzzleFlash" type="OmniLight3D" parent="Visual/Weapon"]
+visible = false
+position = Vector3(0, 0.02, -0.68)
+light_color = Color(1, 0.55, 0.12, 1)
+light_energy = 3.0
+omni_range = 3.0
+shadow_enabled = false
+
+[node name="CameraPivot" type="Node3D" parent="."]
+position = Vector3(0, 1.48, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 4.8
+margin = 0.24
+collision_mask = 1
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+position = Vector3(0.52, 0.08, 0)
+current = true
+fov = 68.0
