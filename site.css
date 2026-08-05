@@ -204,6 +204,7 @@ footer span { color: #d7ddd8; font-weight: 800; }
 .important-note { margin: 20px 24px 12px; padding: 15px 17px; border: 1px solid rgba(241, 173, 43, .3); border-radius: 15px; background: rgba(241, 173, 43, .08); }
 .important-note strong { color: var(--gold-bright); font-size: 13px; }
 .important-note p { margin: 4px 0 0; color: #e1e4dc; font-size: 14px; line-height: 1.7; }
+.important-note mark { padding: 1px 5px 3px; color: #171006; border-radius: 5px; background: var(--gold-bright); font-weight: 900; }
 
 .install-flow { display: grid; gap: 7px; margin: 0; padding: 0 24px; list-style: none; }
 .install-flow li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
